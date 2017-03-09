@@ -1,0 +1,56 @@
+== Docker Image for CentOS with SSH Access
+
+=== Install Docker Engine
+
+Install the latest stable docker following the instruction:
+https://docs.docker.com/engine/installation/[docs.docker.com].
+
+An example for Fedora is here:
+https://docs.docker.com/engine/installation/fedora/[Fedora]
+
+
+=== Pull Docker Images
+Pull CentOS images from quay.io.
+
+------------------------
+% docker pull quay.io/cloudian/centos-ssh
+------------------------
+
+=== Run Docker Containers
+Start containers using docker run command like an example below.
+
+----------------------------------
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld3 --name cld3 quay.io/cloudian/centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld2 --name cld2 quay.io/cloudian/centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld1 --name cld1 quay.io/cloudian/centos-ssh
+----------------------------------
+
+=== Check IP Addresses of Containers
+Check IP addresses of running containers using docker inspect command.
+
+----------------------------------
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' cld1
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' cld2
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' cld3
+----------------------------------
+
+Check IP addresses using the commands above and add entries like following
+to /etc/hosts of the Docker Host and also /etc/hosts of cld1, cld2 and cld3.
+
+------------------
+172.17.0.2 cld1.localdomain cld1
+172.17.0.3 cld2.localdomain cld2
+172.17.0.4 cld3.localdomain cld3
+------------------
+
+
+=== SSH Access to Docker Container
+Default password for root is "password".
+
+----------------------------------
+% ssh -A root@<ip-address-of-cld1>
+% ssh -A root@<ip-address-of-cld2>
+% ssh -A root@<ip-address-of-cld3>
+----------------------------------
+
+

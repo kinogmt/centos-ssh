@@ -1,0 +1,77 @@
+== Start Multiple Containers with Docker Compose
+This is an example to start some Docker containers with SSH access
+as the basis for multi-node cluster deployment.
+
+=== Install Docker
+
+Read link:install.adoc[this document]
+for installation of Docker.
+
+=== docker-compose.yml
+
+Following example of docker-compose.yml is for service named "centos"
+using Docker image quay.io/cloudian/centos-ssh.
+
+[NOTE]
+Password of root on quay.io/cloudian/centos-ssh is "password".
+
+--------------------------
+version: "2"
+services:
+  centos:
+    image: quay.io/cloudian/centos-ssh
+    hostname: cld0  
+    privileged: true
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+    dns_search:
+      - localdomain
+    networks:
+      - net1
+  centos_m:
+    extends: centos
+    ports:
+      - "80:80"
+      - "8443:8443"
+      - "18081:18081"
+      - "19443:19443"
+networks:
+  net1:
+--------------------------
+
+[NOTE]
+Service "centos_m" is almost same as "centos" except
+forwarding of some ports from Docker host to the container.
+Example above is forwarding 80, 8443, 18081 and 19443
+to the container for centos_m service.
+
+
+See https://docs.docker.com/compose/compose-file/ for detail
+of compose file syntax.
+
+
+=== Start Containers
+
+Starting multiple containers using docker-compose *scale* command.
+For example, following command will start 1 master container first
+and start 2 more containers of *centos*
+service defined in the docker-compose.yml above.
+
+----------------------------------------------------------
+% docker-compose -p=w up -d centos_m
+% docker-compose -p=w scale centos=2
+----------------------------------------------------------
+
+
+=== Get IP Addresses
+Get IP Addresses of containers using link:hosts.sh[hosts.sh].
+
+----------------
+% ./hosts.sh
+172.17.0.2 cld1.localdomain cld1
+172.17.0.3 cld2.localdomain cld2
+172.17.0.4 cld3.localdomain cld3
+----------------
+
+
