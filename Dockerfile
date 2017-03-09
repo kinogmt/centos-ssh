@@ -28,7 +28,7 @@ RUN (mkdir -p /root/.ssh/; \
 
 # terminfo for screen.xterm-256color
 ADD screen.xterm-256color /root/
-RUN tic screen.xterm-256color
+RUN tic /root/screen.xterm-256color
 
 ##########################################################################
 # passwords 
