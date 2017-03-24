@@ -23,7 +23,6 @@ RUN (service sshd start; \
 
 RUN (mkdir -p /root/.ssh/; \
      rm -f /var/lib/rpm/.rpm.lock; \
-     sed -ie 's/IPV6INIT="yes"/IPV6INIT="no"/g' /etc/sysconfig/network-scripts/ifcfg-eth0; \
      echo "StrictHostKeyChecking=no" > /root/.ssh/config; \
      echo "UserKnownHostsFile=/dev/null" >> /root/.ssh/config)
 
