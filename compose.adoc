@@ -33,11 +33,13 @@ services:
     extends: centos
     ports:
       - "80:80"
+      - "2222:22"
       - "8443:8443"
       - "18081:18081"
       - "19443:19443"
 networks:
   net1:
+    ipv4_address: 172.28.0.2
 --------------------------
 
 [NOTE]
@@ -69,9 +71,29 @@ Get IP Addresses of containers using link:hosts.sh[hosts.sh].
 
 ----------------
 % ./hosts.sh
-172.17.0.2 cld1.localdomain cld1
-172.17.0.3 cld2.localdomain cld2
-172.17.0.4 cld3.localdomain cld3
+172.28.0.2 cld0.localdomain cld0
+172.28.0.3 cld1.localdomain cld1
+172.28.0.4 cld2.localdomain cld2
 ----------------
+
+
+=== SSH Access
+
+SSH access to master container(type A):
+------------------
+% ssh root@172.28.0.2
+------------------
+
+SSH access to master container(type B):
+------------------
+% ssh -p2222 root@localhost
+------------------
+
+[NOTE]
+On Docker for Mac,
+type A is not possible because
+master container is not IP-reachable directly from macos.
+
+
 
 
