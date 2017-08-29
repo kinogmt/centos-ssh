@@ -10,7 +10,7 @@ RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontab
 
 ##########################################################################
 # add epel repository
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN rpm -Uvh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
 
 RUN (yum install -y hiera lsyncd sshpass rng-tools)
 
