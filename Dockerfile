@@ -10,7 +10,7 @@ RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontab
 
 ##########################################################################
 # enable services
-RUN service dnsmasq enable
+RUN systemctl enable dnsmasq sshd crond
 
 ##########################################################################
 # add epel repository
