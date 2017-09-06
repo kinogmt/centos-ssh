@@ -7,7 +7,7 @@ RUN yum update -y glibc-common
 ##########################################################################
 # all yum installations here
 RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq unzip pax which less \
-                   hiera lsyncd sshpass rng-tools initscripts bind-utils net-tools libselinux-utils
+                   rng-tools initscripts bind-utils net-tools libselinux-utils
 
 ##########################################################################
 # enable services
@@ -17,7 +17,7 @@ RUN systemctl enable dnsmasq sshd crond
 # add epel repository
 RUN rpm -Uvh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
 
-RUN yum install -y ngrep
+RUN yum install -y ngrep hiera lsyncd sshpass
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
