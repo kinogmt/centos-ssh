@@ -12,7 +12,7 @@ RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontab
 # add epel repository
 RUN rpm -Uvh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
 
-RUN (yum install -y hiera lsyncd sshpass rng-tools initscripts bind-utils net-tools)
+RUN (yum install -y hiera lsyncd sshpass rng-tools initscripts bind-utils net-tools libselinux-utils)
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
