@@ -9,6 +9,10 @@ RUN yum update -y glibc-common
 RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq unzip pax which
 
 ##########################################################################
+# enable services
+RUN service dnsmasq enable
+
+##########################################################################
 # add epel repository
 RUN rpm -Uvh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
 
