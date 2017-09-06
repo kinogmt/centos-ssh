@@ -42,4 +42,4 @@ RUN tic /root/screen.xterm-256color
 RUN echo "root:password" | chpasswd
 
 EXPOSE 22
-CMD ["/sbin/init", "service crond start", "/usr/sbin/sshd -D"]
+CMD ["/sbin/init"]
