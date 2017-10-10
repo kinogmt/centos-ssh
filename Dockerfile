@@ -2,7 +2,8 @@ FROM centos:7
 
 ##########################################################################
 ### update glibc-common for locale files
-RUN yum update -y glibc-common
+#RUN yum update -y glibc-common
+RUN yum update -y
 
 ##########################################################################
 # all yum installations here
