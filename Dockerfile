@@ -16,7 +16,7 @@ RUN systemctl enable dnsmasq sshd crond
 
 ##########################################################################
 # add epel repository
-RUN rpm -Uvh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/Packages/e/epel-release-7-10.noarch.rpm
+RUN rpm -Uvh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
 
 RUN yum install -y ngrep hiera lsyncd sshpass
 
