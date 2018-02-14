@@ -5,6 +5,10 @@ FROM centos:6.7
 RUN yum update -y glibc-common
 
 ##########################################################################
+# workaround for https://github.com/moby/moby/issues/10180
+RUN yum install -y yum-plugin-ovl
+
+##########################################################################
 # all yum installations here
 RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq unzip pax which
 
