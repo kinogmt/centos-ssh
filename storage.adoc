@@ -44,4 +44,19 @@ ExecStart=/usr/bin/dockerd -s devicemapper --storage-opt dm.loopdatasize=200G
 
 === overlay2
 
-TBD
+Default container disk capacity for overlay2 driver is same as
+the backing file system on the docker host(/var/lib/docker/overlay2).
+
+It is also possible to limit the size smaller than the actual size
+with overlay2.size option.
+
+==== overlay2.size
+Sets the default max size of the container.
+It is supported only when the backing fs is xfs
+and mounted with pquota mount option.
+Under these conditions the user can pass any size less then the backing fs size.
+
+.Example /usr/lib/systemd/system/docker.service
+------------------
+ExecStart=/usr/bin/dockerd -s overlay2 --storage-opt overlay2.size=20G
+------------------
