@@ -1,0 +1,46 @@
+== Storage Driver Options
+
+Some options for storage drivers.
+Especially options to extend base image/container disk size.
+
+https://docs.docker.com/engine/reference/commandline/dockerd/#options-per-storage-driver
+
+=== devicemapper
+
+
+
+==== dm.basesize
+Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 10G.
+
+
+.Example /usr/lib/systemd/system/docker.service
+------------------
+ExecStart=/usr/bin/dockerd -s devicemapper --storage-opt dm.basesize=20G
+------------------
+
+This value affects the system-wide “base” empty filesystem
+that may already be initialized and inherited by pulled images.
+Typically, a change to this value requires additional steps to take effect:
+
+[NOTE] Following commads will *delete* all docker images on the host.
+
+--------------------------
+$ sudo service docker stop
+$ sudo rm -rf /var/lib/docker
+$ sudo service docker start
+--------------------------
+
+==== dm.loopdatasize
+Specifies the size to use when creating the loopback file for the “data” device which is used for the thin pool.
+The default size is 100G. The file is sparse, so it will not initially take up this much space.
+
+.Example /usr/lib/systemd/system/docker.service
+------------------
+ExecStart=/usr/bin/dockerd -s devicemapper --storage-opt dm.loopdatasize=200G
+------------------
+
+
+
+=== overlay2
+
+TBD
