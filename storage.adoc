@@ -13,7 +13,7 @@ https://docs.docker.com/engine/reference/commandline/dockerd/#options-per-storag
 Specifies the size to use when creating the base device, which limits the size of images and containers. The default value is 10G.
 
 
-. Example /usr/lib/systemd/system/docker.service
+.Example /usr/lib/systemd/system/docker.service
 ------------------
 ExecStart=/usr/bin/dockerd -s devicemapper --storage-opt dm.basesize=20G
 ------------------
@@ -35,7 +35,7 @@ $ sudo service docker start
 Specifies the size to use when creating the loopback file for the “data” device which is used for the thin pool.
 The default size is 100G. The file is sparse, so it will not initially take up this much space.
 
-. Example /usr/lib/systemd/system/docker.service
+.Example /usr/lib/systemd/system/docker.service
 ------------------
 ExecStart=/usr/bin/dockerd -s devicemapper --storage-opt dm.loopdatasize=200G
 ------------------
