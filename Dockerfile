@@ -36,6 +36,12 @@ RUN (mkdir -p /root/.ssh/; \
      echo "StrictHostKeyChecking=no" > /root/.ssh/config; \
      echo "UserKnownHostsFile=/dev/null" >> /root/.ssh/config)
 
+# --- workaround for agetty high cpu ---
+RUN systemctl mask system-getty.slice; \
+        systemctl mask getty.target; \
+        systemctl mask serial-getty@ttyS0.service; \
+        systemctl mask getty@tty1.service
+
 # terminfo for screen.xterm-256color
 ADD screen.xterm-256color /root/
 RUN tic /root/screen.xterm-256color
