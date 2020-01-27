@@ -19,7 +19,7 @@ RUN systemctl enable dnsmasq sshd crond
 # add epel repository
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-RUN yum install -y ngrep hiera lsyncd sshpass
+RUN yum install -y ngrep lsyncd
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
