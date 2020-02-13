@@ -3,15 +3,12 @@
 === Install Docker Engine on CentOS 7
 
 --------
-# tee /etc/yum.repos.d/docker.repo <<-'EOF'
-[dockerrepo]
-name=Docker Repository
-baseurl=https://yum.dockerproject.org/repo/main/centos/7/
-enabled=1
-gpgcheck=1
-gpgkey=https://yum.dockerproject.org/gpg
-EOF
-
+# yum install -y yum-utils \
+    device-mapper-persistent-data \
+    lvm2
+# yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
 # yum install docker-engine
 # service docker start
 --------
@@ -19,15 +16,10 @@ EOF
 === Install Docker Engine on Fedora
 
 --------
-# tee /etc/yum.repos.d/docker.repo <<-'EOF'
-[dockerrepo]
-name=Docker Repository
-baseurl=https://yum.dockerproject.org/repo/main/fedora/$releasever/
-enabled=1
-gpgcheck=1
-gpgkey=https://yum.dockerproject.org/gpg
-EOF
-
+# dnf -y install dnf-plugins-core
+# dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
 # yum install docker-engine
 # service docker start
 --------
@@ -45,7 +37,7 @@ add the account to "docker" group
 === Install Docker Compose on CentOS 7 or Fedora
 
 --------
-# curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 # chmod +x /usr/local/bin/docker-compose
 --------
 
