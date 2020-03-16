@@ -1,9 +1,4 @@
-FROM centos:7
-
-##########################################################################
-### update glibc-common for locale files
-#RUN yum update -y glibc-common
-RUN yum update -y
+FROM centos:7.6.1810
 
 ##########################################################################
 # all yum installations here
@@ -19,7 +14,7 @@ RUN systemctl enable dnsmasq sshd crond
 # add epel repository
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-RUN yum install -y ngrep hiera lsyncd sshpass
+RUN yum install -y ngrep lsyncd sshpass
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
@@ -35,6 +30,12 @@ RUN (mkdir -p /root/.ssh/; \
      rm -f /var/lib/rpm/.rpm.lock; \
      echo "StrictHostKeyChecking=no" > /root/.ssh/config; \
      echo "UserKnownHostsFile=/dev/null" >> /root/.ssh/config)
+
+# --- workaround for agetty high cpu ---
+RUN systemctl mask system-getty.slice; \
+        systemctl mask getty.target; \
+        systemctl mask serial-getty@ttyS0.service; \
+        systemctl mask getty@tty1.service
 
 # terminfo for screen.xterm-256color
 ADD screen.xterm-256color /root/
