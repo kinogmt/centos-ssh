@@ -21,8 +21,6 @@ RUN (mkdir -p /var/run/sshd; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_rsa_key -t rsa -N ''; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -t ecdsa -N ''; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -t ed25519 -N ''; \
-     sed -i 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config; \
-     sed -i 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config; \
      sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config; \
      sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Base.repo)
 
