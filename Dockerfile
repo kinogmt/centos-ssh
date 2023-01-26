@@ -14,7 +14,7 @@ RUN systemctl enable dnsmasq sshd crond
 
 ##########################################################################
 # add epel repository
-RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+RUN yum install -y epel-release
 
 RUN yum install -y ngrep lsyncd sshpass
 
