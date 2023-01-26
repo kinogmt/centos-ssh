@@ -6,7 +6,6 @@ RUN yum install -y sudo passwd openssh-server openssh-clients tar crontabs strac
                    rng-tools initscripts bind-utils net-tools libselinux-utils \
                    openssl
 
-# todo: install screen, ntp, pax
 
 ##########################################################################
 # enable services
@@ -15,6 +14,9 @@ RUN systemctl enable dnsmasq sshd crond
 ##########################################################################
 # add epel repository
 RUN yum install -y epel-release
+
+RUN yum install -y screen
+# todo: install ntp, pax
 
 RUN yum install -y ngrep lsyncd sshpass
 
