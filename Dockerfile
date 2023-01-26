@@ -2,9 +2,11 @@ FROM rockylinux:8.7.20221219
 
 ##########################################################################
 # all yum installations here
-RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq unzip pax which less \
+RUN yum install -y sudo passwd openssh-server openssh-clients tar crontabs strace telnet perl libpcap bc patch dnsmasq unzip which less \
                    rng-tools initscripts bind-utils net-tools libselinux-utils \
                    openssl
+
+# todo: install screen, ntp, pax
 
 ##########################################################################
 # enable services
