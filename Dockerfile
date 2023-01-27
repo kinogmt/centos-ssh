@@ -26,7 +26,7 @@ RUN (mkdir -p /var/run/sshd; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -t ecdsa -N ''; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -t ed25519 -N ''; \
      sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config; \
-     sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Base.repo)
+     sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/Rocky-BaseOS.repo)
 
 RUN (mkdir -p /root/.ssh/; \
      rm -f /var/lib/rpm/.rpm.lock; \
