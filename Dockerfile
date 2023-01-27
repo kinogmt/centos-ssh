@@ -2,6 +2,9 @@ FROM rockylinux:8.7.20221219
 
 ##########################################################################
 # all yum installations here
+# note: "screen", "ntp" and "pax" used to be installed for CentOS 7.
+#       Those are not available on yum repository of Rocky 8.
+#       "screen" will be installed below using EPEL for Rocky 8 below.
 RUN yum install -y sudo passwd openssh-server openssh-clients tar crontabs strace telnet perl libpcap bc patch dnsmasq unzip which less \
                    rng-tools initscripts bind-utils net-tools libselinux-utils \
                    openssl
@@ -16,7 +19,6 @@ RUN systemctl enable dnsmasq sshd crond
 RUN yum install -y epel-release
 
 RUN yum install -y screen
-# todo: install ntp, pax
 
 RUN yum install -y ngrep lsyncd sshpass
 
