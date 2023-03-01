@@ -28,6 +28,9 @@ RUN yum install -y glibc-langpack-en
 # --- for HSH comaptibility ---
 RUN yum install -y ncurses-compat-libs-6.1
 
+# --- workaround: (salt failed to start without this) ---
+RUN yum install-y java-1.8.0-openjdk-headless
+
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_rsa_key -t rsa -N ''; \
