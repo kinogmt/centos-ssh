@@ -22,6 +22,9 @@ RUN yum install -y screen
 
 RUN yum install -y ngrep lsyncd sshpass
 
+# --- new pacges for rocky ---
+RUN yum install -y glibc-langpack-en
+
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
      yes|ssh-keygen -f /etc/ssh/ssh_host_rsa_key -t rsa -N ''; \
