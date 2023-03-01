@@ -23,7 +23,10 @@ RUN yum install -y screen
 RUN yum install -y ngrep lsyncd sshpass
 
 # --- new pacges for rocky ---
-RUN yum install -y glibc-langpack-en dnf-plugins-core
+RUN yum install -y glibc-langpack-en
+
+# --- for HSH comaptibility ---
+RUN yum install ncurses-compat-libs-6.1
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
