@@ -23,7 +23,7 @@ RUN yum install -y screen
 RUN yum install -y ngrep lsyncd sshpass
 
 # --- new pacges for rocky ---
-RUN yum install -y glibc-langpack-en e2fsprogs freetype hwdata libicu libss python2-setuptools wget rsyslog
+RUN yum install -y glibc-langpack-en dnf-plugins-core
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (mkdir -p /var/run/sshd; \
