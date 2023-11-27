@@ -59,6 +59,8 @@ RUN echo "root:password" | chpasswd
 # So we need them to run the 8.0EA(RC9) installer(for example, to test 8.0.0.1 patches).
 # --- install prereq first ---
 RUN yum install -y  ebtables ipset python3-decorator python3-gobject-base python3-nftables python3-slip-dbus
+# --- insall selinux-policy here to avoid enabling selinux-policy-mls later while running the cloudian pkg
+RUN yum install -y  selinux-policy
 # --- install firewall rpms ---
 ADD rpm/firewalld-0.9.3-13.el8.noarch.rpm /root/
 ADD rpm/firewalld-filesystem-0.9.3-13.el8.noarch.rpm /root/
