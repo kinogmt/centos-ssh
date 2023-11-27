@@ -52,5 +52,19 @@ RUN tic /root/screen.xterm-256color
 # passwords 
 RUN echo "root:password" | chpasswd
 
+##########################################################################
+# Add following RPMs for 8.0 package.
+# Those packages are not available anymore on the thirdparty repo.
+# They are alrady added to 8.0.1 cloudianpkg but not to 8.0 cloudianpkg, which has been already relased. 
+# So we need them to run the 8.0EA(RC9) installer(for example, to test 8.0.0.1 patches).
+# --- install prereq first ---
+RUN yum install -y  ebtables ipset python3-decorator python3-gobject-base python3-nftables python3-slip-dbus
+# --- install firewall rpms ---
+ADD rpm/firewalld-0.9.3-13.el8.noarch.rpm /root/
+ADD rpm/firewalld-filesystem-0.9.3-13.el8.noarch.rpm /root/
+ADD rpm/python3-firewall-0.9.3-13.el8.noarch.rpm /root/
+
+RUN rpm -Uvh /root/firewalld-0.9.3-13.el8.noarch.rpm /root/firewalld-filesystem-0.9.3-13.el8.noarch.rpm /root/python3-firewall-0.9.3-13.el8.noarch.rpm
+
 EXPOSE 22
 CMD ["/sbin/init"]
