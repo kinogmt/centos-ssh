@@ -65,8 +65,11 @@ RUN yum install -y  selinux-policy
 ADD rpm/firewalld-0.9.3-13.el8.noarch.rpm /root/
 ADD rpm/firewalld-filesystem-0.9.3-13.el8.noarch.rpm /root/
 ADD rpm/python3-firewall-0.9.3-13.el8.noarch.rpm /root/
-
+# --- install firewalld ---
 RUN rpm -Uvh /root/firewalld-0.9.3-13.el8.noarch.rpm /root/firewalld-filesystem-0.9.3-13.el8.noarch.rpm /root/python3-firewall-0.9.3-13.el8.noarch.rpm
+# --- disable firewalld(for performance) ---
+RUN systemctl disable firewalld
+
 
 EXPOSE 22
 CMD ["/sbin/init"]
