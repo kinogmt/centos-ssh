@@ -1,0 +1,9 @@
+This branch, rocky8-fw, is a special branch to workaround Cloudian-8.0EA package issues.
+This is only for creating a special container image which includes some RPM files,
+which became unavailable on the third-party repository after we release 8.0EA.
+
+So we will NOT merge this branch to the main stream rocky-8 branch.
+We will just push the image to quay.io as quay.io/cloudian/centos-ssh:rocky8.7.20221219-fw.
+And clouian-qc release-8.0 branch will use this image in docker-compose.yml.
+
+See Jira QC-237 for more detail.
