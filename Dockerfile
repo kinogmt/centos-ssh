@@ -1,4 +1,4 @@
-FROM rockylinux:8.7.20221219
+FROM rockylinux:8.9.20231119
 
 ##########################################################################
 # all yum installations here
